@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Título</title>
+    <style>
+      h1 {
+        color: purple;
+        font-weight: bold;
+      }
+      h3 {
+        color: blueviolet;
+      }
+      p {
+        color: darkgrey;
+      }
+      input {
+        font-weight: bold;
+        color: chocolate;
+      }
+      label {
+        font-weight: bold;
+        color: indigo;
+      }
+      button {
+        font-weight: bold;
+        color: purple;
+      }
+      center {
+        -webkit-text-stroke-width: 0.01px; /* largura da borda */
+        -webkit-text-stroke-color: #000; /* cor da borda */
+      }
+	  td {
+		color: indigo;
+	  }
+	  table, th, td {
+ 			border: 1px solid black;
+  			border-collapse: collapse;
+		}
+    </style>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#bt").on("click", function (event) {
+          var peso = parseFloat($("#peso").val());
+          var altura = parseFloat($("#altura").val());
+          var color = "red";
+          if (peso && altura) {
+            var imc = peso / (altura * altura);
+            var resultado = "";
+            if (imc < 18.5) {
+              resultado = "Baixo peso";
+              color = "blue";
+            } else if (imc >= 18.5 && imc < 25.0) {
+              resultado = "Peso ideal";
+              color = "green";
+            } else if (imc >= 25.0 && imc < 30.0) {
+              resultado = "Sobrepeso";
+              color = "gold";
+            } else if (imc >= 30.0 && imc < 35.0) {
+              resultado = "Obesidade Grau 1";
+              color = "orange";
+            } else if (imc >= 35.0 && imc < 40.0) {
+              resultado = "Obesidade Grau 2";
+              color = "orangered";
+            } else {
+              resultado = "Obesidade Grau 3";
+              color = "red";
+            }
+            $("#resultado").html(
+              resultado + " <p/><b>Valor: " + imc.toFixed(1) + "</b>"
+            );
+            $("#resultado").css("color", color);
+          } else {
+            $("#resultado").html("Digite valores válidos");
+            $("#resultado").css("color", color);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <center>
+      <h1 id="c1">Cálculo - IMC</h1>
+      <label for="altura">Altura (em m):</label>
+      <input
+        id="altura"
+        type="number"
+        placeholder="1,75"
+        name="fname"
+      /><br /><br />
+      <label for="peso">Peso:</label>
+      <input
+        id="peso"
+        type="number"
+        placeholder="70"
+        name="lname"
+      /><br /><br />
+      <button id="bt">Calcular</button>
+      <h3 id="resultado"></h3>
+      <table 
+        <tbody>
+          <tr>
+            <td><b>IMC</b></td>
+            <td><b>Condição</b></td>
+          </tr>
+          <tr>
+            <td><18.5</td>
+            <td style="color:blue"> Baixo peso</td>
+          </tr>
+          <tr>
+            <td>18.5 < 25</td>
+            <td style="color:green">Peso ideal</td>
+          </tr>
+          <tr>
+            <td>25 - 30</td>
+            <td style="color:gold">Sobrepeso</td>
+          </tr>
+          <tr>
+            <td>30 - 35</td>
+            <td style="color:orange">Obesidade Grau 1</td>
+          </tr>
+          <tr>
+            <td>35 - 40</td>
+            <td style="color:orangered">Obesidade Grau 2</td>
+          </tr>
+          <tr>
+            <td>> 40</td>
+            <td style="color:red">Obesidade Grau 3</td>
+          </tr>
+        </tbody>
+      </table>
+    </center>
+  </body>
+</html>
